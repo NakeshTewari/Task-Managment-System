@@ -54,6 +54,14 @@ Task-Managment-System/
 └── README.md               # This file
 ```
 
+## 🌐 Deployment
+
+The application is deployed across multiple platforms:
+
+- **Frontend:** [Vercel](https://vercel.com) - [https://task-managment-system-three.vercel.app](https://task-managment-system-three.vercel.app)
+- **Backend:** [Render](https://render.com)
+- **Database:** [Clever Cloud](https://www.clever-cloud.com) - console-clever-cloud.com
+
 ## 🚀 Getting Started
 
 ### Prerequisites

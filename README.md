@@ -2,7 +2,7 @@
 
 A full-stack web application for managing tasks efficiently. Built with React + Vite on the frontend and Node.js + Express on the backend.
 
-**Live Demo:** [https://task-managment-system-three.vercel.app](https://task-managment-system-three.vercel.app)
+**Live Demo:** [https://task-managment-system-xi.vercel.app/](https://task-managment-system-xi.vercel.app/)
 
 ## 📋 Features
 

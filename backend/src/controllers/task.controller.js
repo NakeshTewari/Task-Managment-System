@@ -1,5 +1,15 @@
 const pool = require("../config/db");
 
+// Helper function to format date from ISO string to YYYY-MM-DD
+const formatDateForDB = (dateString) => {
+  if (!dateString) return null;
+  // Handle ISO 8601 format (2026-05-22T00:00:00.000Z) and regular date format
+  if (typeof dateString === "string") {
+    return dateString.split("T")[0]; // Extract only the date part
+  }
+  return dateString;
+};
+
 // get tasks by project
 const getTasks = async (req, res) => {
   const { project_id } = req.query;
@@ -66,6 +76,9 @@ const createTask = async (req, res) => {
   }
 
   try {
+    // Format due_date to YYYY-MM-DD
+    const formattedDueDate = formatDateForDB(due_date);
+
     const [result] = await pool.query(
       `INSERT INTO tasks 
        (id, title, description, project_id, created_by, assigned_to, priority, due_date, status)
@@ -78,7 +91,7 @@ const createTask = async (req, res) => {
         req.user.id,
         assigned_to || null,
         priority || "medium",
-        due_date || null,
+        formattedDueDate,
         status || "todo",
       ],
     );
@@ -104,6 +117,9 @@ const updateTask = async (req, res) => {
     req.body;
 
   try {
+    // Format due_date to YYYY-MM-DD
+    const formattedDueDate = formatDateForDB(due_date);
+
     await pool.query(
       `UPDATE tasks SET
        title = COALESCE(?, title),
@@ -118,7 +134,7 @@ const updateTask = async (req, res) => {
         description,
         status,
         priority,
-        due_date,
+        formattedDueDate,
         assigned_to,
         req.params.id,
       ],
